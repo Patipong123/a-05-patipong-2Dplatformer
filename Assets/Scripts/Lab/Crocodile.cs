@@ -9,7 +9,7 @@ public class Crocodile : Enemy
 
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform bulletSpawnPoint;
-    [SerializeField] private float bulletWaitTume;
+    [SerializeField] private float bulletWaitTime;
     [SerializeField] private float bulletTimer;
 
     private void Start()
@@ -22,13 +22,15 @@ public class Crocodile : Enemy
     private void Update()
     {
         
-        Behaviour();
+        
 
         bulletTimer -= Time.deltaTime;
 
+        Behaviour();
+
         if (bulletTimer < 0) 
         {
-            bulletTimer = bulletWaitTume;
+            bulletTimer = bulletWaitTime;
         }
     }
 
@@ -46,9 +48,13 @@ public class Crocodile : Enemy
 
     public void Shoot() 
     {
+
         if (bulletTimer < 0) 
         {
-            Instantiate(bullet, bulletSpawnPoint.position, Quaternion.identity);
+            anim.SetTrigger("Shoot");
+            GameObject obj = Instantiate(bullet, bulletSpawnPoint.position, Quaternion.identity);
+
+            bulletWaitTime = 1.5f;
         }
         
     }

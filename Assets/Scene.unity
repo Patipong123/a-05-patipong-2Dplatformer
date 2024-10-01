@@ -2811,14 +2811,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  anim: {fileID: 0}
+  anim: {fileID: 1916462465}
   rb: {fileID: 0}
-  attackRange: 0
+  attackRange: 6
   player: {fileID: 390193893}
   bullet: {fileID: 115806, guid: 40466c5ac40024bbca1e4b144cdf43c2, type: 3}
   bulletSpawnPoint: {fileID: 1418991512}
-  bulletWaitTume: 1.5
+  bulletWaitTime: 1.5
   bulletTimer: 0
+--- !u!95 &1916462465 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9555892, guid: c07db661138134f589f46b8510d57c9a, type: 3}
+  m_PrefabInstance: {fileID: 1798490023}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1930985504
 PrefabInstance:
   m_ObjectHideFlags: 0

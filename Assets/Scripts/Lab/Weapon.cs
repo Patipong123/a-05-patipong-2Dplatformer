@@ -24,13 +24,5 @@ public abstract class Weapon : MonoBehaviour
         return 1;
     }
 
-    public void Init(int newDamage)
-    {
-        Damage = newDamage;
-    }
-
-
-
-
 
 }

@@ -11,8 +11,9 @@ public class Rock : Weapon
     
     void Start()
     {
-        Init(40);
+        Damage = 40;
         Move();
+        
     }
 
     // Update is called once per frame

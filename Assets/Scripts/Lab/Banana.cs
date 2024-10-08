@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,10 +10,13 @@ public class Banana : Weapon
     
     void Start()
     {
-        Init(30);
+        Damage = 30;
         speed = 4f;
         Move();
+        
     }
+
+    
 
     public override void Move()
     {

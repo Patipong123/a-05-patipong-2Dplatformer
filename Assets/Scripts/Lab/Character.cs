@@ -7,8 +7,8 @@ public abstract class Character : MonoBehaviour
     [SerializeField] private int health;
     public int Health { get { return health; } set { health = value; } }
 
-    public Animator anim;
-    public Rigidbody2D rb;
+    protected Animator anim;
+    protected Rigidbody2D rb;
 
     
 

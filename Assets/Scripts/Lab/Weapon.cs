@@ -7,6 +7,7 @@ public abstract class Weapon : MonoBehaviour
 {
     [SerializeField] private int damge;
     public int Damage { get { return damge; } set { damge = value; } }
+    protected string Owner;
 
     private void Start()
     {
@@ -18,9 +19,9 @@ public abstract class Weapon : MonoBehaviour
 
     public abstract void Move();
 
-    public void GetShootDirection(int get) 
+    public int GetShootDirection(int get) 
     {
-        
+        return 1;
     }
 
     public void Init(int newDamage)

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,11 +25,11 @@ public class Rock : Weapon
 
     public override void Move()
     {
-        Debug.Log("Rock move with Rigibody");
+        Debug.Log($"{this.name} move with Rigidbody:force ");
     }
 
     public override void OnHitWith(Character character)
     {
-
+        Console.WriteLine($"{this.name}: Overriding OnHitWith(Character) ");
     }
 }

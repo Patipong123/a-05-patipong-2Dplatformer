@@ -37,6 +37,10 @@ public class Player : Character, IShootable
         WaitTime += Time.fixedDeltaTime;
     }
 
+    
+
+
+
 
 
 }

@@ -30,6 +30,12 @@ public class Rock : Weapon
 
     public override void OnHitWith(Character character)
     {
-        Console.WriteLine($"{this.name}: Overriding OnHitWith(Character) ");
+        if (character is Player player)
+        {
+            player.TakeDamage(Damage);
+            
+        }
     }
+
+    
 }

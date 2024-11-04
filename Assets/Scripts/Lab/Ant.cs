@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Ant : Enemy
 {
@@ -8,11 +9,11 @@ public class Ant : Enemy
     [SerializeField] private Transform[] movePoints;
     
 
-    private void Start()
+    void Start()
     {
-
+        
         rb = GetComponent<Rigidbody2D>();
-
+        
         Init(10);
         
 
@@ -51,7 +52,20 @@ public class Ant : Enemy
 
     }
 
-    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Player player = other.GetComponent<Player>();
+        if (player != null)
+        {
+            Destroy(player.gameObject);
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
+
+
+
+
 }
 
     

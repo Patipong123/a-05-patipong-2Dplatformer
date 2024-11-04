@@ -30,7 +30,7 @@ public abstract class Character : MonoBehaviour
             Destroy(this.gameObject);
             return true;
         }
-        else return false;
+        return false;
 
     }
 

@@ -3,19 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Player : Character
+public class Player : Character, IShootable
 {
-    public void OnTriggerEnter2D(Collider2D collision)
+    [field: SerializeField] public GameObject Bullet { get; set; }
+    [field: SerializeField] public Transform BulletSpawnPoint { get; set; }
+
+    public float ReloadTime { get; set; }
+    public float WaitTime { get; set; }
+
+    public void Shoot() 
     {
-        //อันนี้เขียนเล่นๆให้ player ตายตอนโดน ant เฉยๆครับ
-        if (collision.CompareTag("Enemy"))
+        if (Input.GetButtonDown("Fire1") && (WaitTime >= ReloadTime)) 
         {
-            Destroy(gameObject);;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            
+            Instantiate(Bullet, BulletSpawnPoint.position, Quaternion.identity);
+            WaitTime = 0;
         }
     }
 
-    
+    void Start()
+    {
+        Init(100);
+    }
+
+    void Update()
+    {
+        Shoot();
+    }
+
+    private void FixedUpdate()
+    {
+        WaitTime += Time.fixedDeltaTime;
+    }
+
+
+
 }
 

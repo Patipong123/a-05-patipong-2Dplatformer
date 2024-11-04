@@ -2,59 +2,59 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Crocodile : Enemy
+public class Crocodile : Enemy, IShootable
 {
-    [SerializeField]private float attackRange;
-    [SerializeField]private Player player;
+    float attackRange;
+    public float AttackRange { get { return attackRange; } set { attackRange = value; } }
+    public Player player;
 
-    [SerializeField] private GameObject bullet;
-    [SerializeField] private Transform bulletSpawnPoint;
-    [SerializeField] private float bulletWaitTime;
-    [SerializeField] private float bulletTimer;
+    [field: SerializeField] public GameObject Bullet { get; set; }
+    [field: SerializeField] public Transform BulletSpawnPoint { get; set; }
+
+    public float ReloadTime { get; set; }
+    public float WaitTime { get; set; }
 
     private void Start()
     {
-        Init(100);
+        Init(30);
+        WaitTime = 0.0f;
+        ReloadTime = 5.0f;
+        DamageHit = 30;
+        AttackRange = 6;
+        player = GameObject.FindObjectOfType<Player>();
         
 
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        
-        
-
-        bulletTimer -= Time.deltaTime;
-
+        WaitTime += Time.fixedDeltaTime;
         Behaviour();
-
-        if (bulletTimer < 0) 
-        {
-            bulletTimer = bulletWaitTime;
-        }
     }
+
+    
 
     public override void Behaviour()
     {
-        Vector2 direction = player.transform.position - transform.position;
-        float distance = direction.magnitude;
+        Vector2 distance = player.transform.position - transform.position;
+        
 
-        if (distance < attackRange) 
+        if (distance.magnitude <= attackRange) 
         {
             Shoot();
-            Debug.Log("Shoot");
+            
         }
     }
 
     public void Shoot() 
     {
 
-        if (bulletTimer < 0) 
+        if (WaitTime >= ReloadTime) 
         {
             anim.SetTrigger("Shoot");
-            GameObject obj = Instantiate(bullet, bulletSpawnPoint.position, Quaternion.identity);
+            GameObject obj = Instantiate(Bullet, BulletSpawnPoint.position, Quaternion.identity);
 
-            bulletWaitTime = 1.5f;
+            WaitTime = 0;
         }
         
     }

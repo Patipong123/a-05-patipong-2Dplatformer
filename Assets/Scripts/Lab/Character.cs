@@ -7,10 +7,21 @@ public abstract class Character : MonoBehaviour
     [SerializeField] private int health;
     public int Health { get { return health; } set { health = value; } }
 
-    protected Animator anim;
-    protected Rigidbody2D rb;
+    public Animator anim;
+    public Rigidbody2D rb;
 
-    
+    public virtual void Init(int newHealth) 
+    {
+        health = newHealth;
+        anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start()
+    {
+        
+    }
+
 
     public bool IsDead() 
     {
@@ -23,9 +34,6 @@ public abstract class Character : MonoBehaviour
         Health -= damage;
     }
 
-    public void Init(int newHealth)
-    {
-        Health = newHealth;
-    }
+    
 
 }

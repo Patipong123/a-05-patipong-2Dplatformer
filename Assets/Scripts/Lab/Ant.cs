@@ -13,7 +13,7 @@ public class Ant : Enemy
     {
         
         rb = GetComponent<Rigidbody2D>();
-        
+        DamageHit = 20;
         Init(10);
         
 
@@ -51,19 +51,6 @@ public class Ant : Enemy
         transform.localScale = charScale;
 
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        Player player = other.GetComponent<Player>();
-        if (player != null)
-        {
-            Destroy(player.gameObject);
-
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-    }
-
-
 
 
 }

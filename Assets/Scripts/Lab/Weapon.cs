@@ -7,7 +7,7 @@ public abstract class Weapon : MonoBehaviour
 {
     [SerializeField] int damge;
     public int Damage { get { return damge; } set { damge = value; } }
-    protected string Owner;
+    public IShootable shooter;
 
     private void Start()
     {
@@ -17,22 +17,28 @@ public abstract class Weapon : MonoBehaviour
     public abstract void OnHitWith(Character character);
     public abstract void Move();
 
-    public void Init(int _damage, string _owner) 
+    public void Init(int _damage, IShootable _owner) 
     {
         Damage = _damage;
-        Owner = _owner;
+        shooter = _owner;
     }
 
     public int GetShootDirection() 
     {
-        return 1;
+        float shootDir = shooter.BulletSpawnPoint.position.x - shooter.BulletSpawnPoint.parent.position.x;
+        if (shootDir > 0)
+        {
+            return 1;
+        }
+        else return -1;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
 
         OnHitWith(other.GetComponent<Character>());
-        Destroy(this.gameObject);
+        Debug.Log("Hit");
+        Destroy(this.gameObject, 5f);
     }
 
 

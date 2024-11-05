@@ -10,22 +10,34 @@ public class Banana : Weapon
     
     void Start()
     {
-        Damage = 30;
-        speed = 4f;
-        Move();
+        Damage = 10;
+        speed = 4f * GetShootDirection();
+            
         
     }
 
-    
+    private void Update()
+    {
+        Move();
+    }
 
     public override void Move()
     {
-        Debug.Log("Banana moves with constant speed using Tranform");
+        float newX = transform.position.x + speed * Time.fixedDeltaTime;
+        float newY = transform.position.y;
+        Vector2 newPosition = new Vector2(newX, newY);
+        transform.position = newPosition;
+
+        //Debug.Log("Banana moves with constant speed using Tranform");
     }
 
     public override void OnHitWith(Character character)
     {
-        
+        if (character is Enemy)
+        {
+            character.TakeDamage(this.Damage);
+
+        }
     }
 
 

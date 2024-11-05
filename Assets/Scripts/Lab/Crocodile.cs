@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Crocodile : Enemy, IShootable
@@ -18,10 +19,10 @@ public class Crocodile : Enemy, IShootable
     {
         Init(30);
         WaitTime = 0.0f;
-        ReloadTime = 5.0f;
+        ReloadTime = 2.0f;
         DamageHit = 30;
         AttackRange = 6;
-        player = GameObject.FindObjectOfType<Player>();
+        player = GameObject.FindFirstObjectByType<Player>();
         
 
     }
@@ -53,6 +54,9 @@ public class Crocodile : Enemy, IShootable
         {
             anim.SetTrigger("Shoot");
             GameObject obj = Instantiate(Bullet, BulletSpawnPoint.position, Quaternion.identity);
+            Rock rockScript = obj.GetComponent<Rock>();
+            rockScript.Init(20,this);
+
 
             WaitTime = 0;
         }

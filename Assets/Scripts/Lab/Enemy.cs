@@ -4,12 +4,14 @@ using UnityEngine;
 
 public abstract class Enemy : Character
 {
+    
 
     [SerializeField] int damageHit;
     public int DamageHit { get { return damageHit; }set { damageHit = value; } }
 
     private void Start()
     {
+        
         Behaviour();
     }
 

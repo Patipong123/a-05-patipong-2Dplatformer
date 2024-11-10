@@ -12,8 +12,8 @@ public class Rock : Weapon
     
     void Start()
     {
-        Damage = 20;
-        force = new Vector2 (GetShootDirection() * 100, 400);
+        rb2d = GetComponent<Rigidbody2D>();
+        force = new Vector2 (GetShootDirection() * 5, 10);
         Move();
         
     }
@@ -29,7 +29,7 @@ public class Rock : Weapon
 
         //Debug.Log($"{this.name} move with Rigidbody:force ");
 
-        rb2d.AddForce (force, ForceMode2D.Impulse);
+        rb2d.AddForce (force);
     }
 
     public override void OnHitWith(Character character)
@@ -37,6 +37,7 @@ public class Rock : Weapon
         if (character is Player)
         {
             character.TakeDamage(this.Damage);
+            Destroy(gameObject);
             
         }
     }

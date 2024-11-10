@@ -14,7 +14,7 @@ public class Ant : Enemy
         
         rb = GetComponent<Rigidbody2D>();
         DamageHit = 20;
-        Init(10);
+        Init(100);
         
 
         
@@ -51,6 +51,8 @@ public class Ant : Enemy
         transform.localScale = charScale;
 
     }
+
+    
 
 
 }

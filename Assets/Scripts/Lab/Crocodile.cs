@@ -17,7 +17,7 @@ public class Crocodile : Enemy, IShootable
 
     private void Start()
     {
-        Init(30);
+        Init(100);
         WaitTime = 0.0f;
         ReloadTime = 2.0f;
         DamageHit = 30;
@@ -55,7 +55,7 @@ public class Crocodile : Enemy, IShootable
             anim.SetTrigger("Shoot");
             GameObject obj = Instantiate(Bullet, BulletSpawnPoint.position, Quaternion.identity);
             Rock rockScript = obj.GetComponent<Rock>();
-            rockScript.Init(20,this);
+            rockScript.Init(25,this);
 
 
             WaitTime = 0;

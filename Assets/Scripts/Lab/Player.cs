@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Player : Character, IShootable
 {
+    
+
     [field: SerializeField] public GameObject Bullet { get; set; }
     [field: SerializeField] public Transform BulletSpawnPoint { get; set; }
 
@@ -23,9 +25,11 @@ public class Player : Character, IShootable
 
     void Start()
     {
+        
         Init(100);
         WaitTime = 0.0f;
         ReloadTime = 2.0f;
+
     }
 
     void Update()

@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Character : MonoBehaviour
 {
+    public Image Healthbar;
+
     [SerializeField] private int health;
     public int Health { get { return health; } set { health = value; } }
 
@@ -37,8 +40,9 @@ public abstract class Character : MonoBehaviour
     public void TakeDamage(int damage) 
     {
         Health -= damage;
-        Debug.Log(damage);
-        Debug.Log(Health);
+        Healthbar.fillAmount = health / 100f;
+        Debug.Log("Damage " + damage);
+        Debug.Log("Health " + Health);
         IsDead();
 
 

@@ -56,6 +56,8 @@ public class Player : Character, IShootable
         TakeDamage(enemy.DamageHit);
     }
 
+    
+
 
 
 }
